@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}  {# Load static for default images #}
+
+{% block title %}Upcoming Events{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Upcoming Events</h2>
+
+    <!-- Search and Filters -->
+    <form method="GET" class="mb-3">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="text" name="search" value="{{ request.GET.search }}" class="form-control" placeholder="Search events...">
+            </div>
+            <div class="col-md-4">
+                <select name="category" class="form-control">
+                    <option value="">All Categories</option>
+                    <option value="tech" {% if request.GET.category == "tech" %}selected{% endif %}>Tech</option>
+                    <option value="business" {% if request.GET.category == "business" %}selected{% endif %}>Business</option>
+                    <option value="education" {% if request.GET.category == "education" %}selected{% endif %}>Education</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <input type="date" name="date" value="{{ request.GET.date }}" class="form-control">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Apply Filters</button>
+    </form>
+
+    <!-- Events Grid -->
+    <div class="row" id="eventContainer">
+        {% for event in events %}
+        <div class="col-md-4 event-card" data-category="{{ event.category|default:'' }}" data-date="{{ event.date }}">
+            <div class="card shadow-sm mb-4">
+                <!-- Event Image (Fixed size) -->
+                {% if event.image %}
+                    <img src="{{ event.image.url }}" class="card-img-top event-image" alt="Event Image">
+                {% else %}
+                    <img src="{% static 'images/default_event.jpg' %}" class="card-img-top event-image" alt="Default Event Image">
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.title }}</h5>
+                    <p class="card-text">{{ event.description|truncatewords:15 }}</p>
+                    <p><strong>Date:</strong> {{ event.date }}</p>
+                    <a href="{% url 'event_detail' event.id %}" class="btn btn-primary">View Details</a>
+
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'register_for_event' event.id %}" class="btn btn-success">Register</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-warning">Login to Register</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No events available.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Improved CSS -->
+<style>
+    .event-image {
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+
+<!-- JavaScript for Filtering -->
+<script>
+    function filterEvents() {
+        let search = document.getElementById('searchBar').value.toLowerCase();
+        let category = document.getElementById('categoryFilter').value.toLowerCase();
+        let date = document.getElementById('dateFilter').value;
+        
+        let events = document.querySelectorAll('.event-card');
+        
+        events.forEach(event => {
+            let title = event.querySelector('.card-title').innerText.toLowerCase();
+            let eventCategory = event.getAttribute('data-category').toLowerCase();
+            let eventDate = event.getAttribute('data-date');
+
+            let matchesSearch = title.includes(search);
+            let matchesCategory = category === "" || eventCategory.includes(category);
+            let matchesDate = date === "" || eventDate.startsWith(date);
+
+            event.style.display = (matchesSearch && matchesCategory && matchesDate) ? "block" : "none";
+        });
+    }
+</script>
+
+{% endblock %}

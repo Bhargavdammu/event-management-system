@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h2>🎟️ Ticket Details</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>📅 Event:</strong> {{ ticket.event.title }}</p>
+            <p><strong>👤 User:</strong> {{ ticket.user.username }}</p>
+            <p><strong>🎫 Type:</strong> {{ ticket.ticket_type }}</p>
+            <p><strong>💰 Price:</strong> ${{ ticket.price }}</p>
+            <p><strong>🕒 Issued At:</strong> {{ ticket.issued_at }}</p>
+
+            {% if ticket.qr_code %}
+                <div class="text-center">
+                    <img src="{{ ticket.qr_code.url }}" alt="QR Code" class="img-fluid" style="max-width: 200px;">
+                    <p class="text-muted">Scan this QR code for event entry.</p>
+                </div>
+            {% endif %}
+
+            <div class="text-center mt-4">
+                {% if not ticket.is_paid %}
+                    <a href="{% url 'fake_payment' ticket.id %}" class="btn btn-success">💳 Pay Now</a>
+                {% else %}
+                    <p class="text-success"><strong>✅ Payment Status:</strong> Paid</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <a href="{% url 'event_detail' ticket.event.id %}" class="btn btn-secondary">🔙 Back to Event</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

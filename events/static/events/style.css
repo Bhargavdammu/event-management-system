@@ -1,0 +1,91 @@
+/* General Styling */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+/* Header Styling */
+h1 {
+    color: #333;
+}
+
+/* List Styling */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    background: white;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #007bff;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Button Styles */
+button, .btn {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.register-btn {
+    background-color: green;
+    color: white;
+}
+
+.register-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-btn {
+    background-color: red;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #c82333;
+}
+
+/* Success & Error Messages */
+.success-message {
+    color: green;
+    font-weight: bold;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+
+/* Container for better layout */
+.container {
+    width: 80%;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+

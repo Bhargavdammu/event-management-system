@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Create a New Event{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-4 mb-3">Create a New Event</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_title" class="form-label">Title:</label>
+            {{ form.title }}
+        </div>
+        <div class="mb-3">
+            <label for="id_description" class="form-label">Description:</label>
+            {{ form.description }}
+        </div>
+        <div class="mb-3">
+            <label for="id_location" class="form-label">Location:</label>
+            {{ form.location }}
+        </div>
+        <div class="mb-3">
+            <label for="id_date" class="form-label">Date:</label>
+            {{ form.date }}
+        </div>
+        <div class="mb-3">
+            <label for="id_image" class="form-label">Image:</label>
+            {{ form.image }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Event</button>
+        <a href="{% url 'event_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

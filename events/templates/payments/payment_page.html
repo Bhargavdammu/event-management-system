@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Payment for {{ payment.ticket.event.title }}</h2>
+  <p>Ticket Type: {{ payment.ticket.ticket_type }}</p>
+  <p>Amount: ₹{{ payment.amount }}</p>
+  <p>Status: <strong>{{ payment.status }}</strong></p>
+
+  {% if payment.status == "Pending" %}
+    <a href="{% url 'confirm_payment' payment.id %}" class="btn btn-success">
+      Confirm Payment 💳
+    </a>
+  {% else %}
+    <p>Your payment is already completed. ✅</p>
+  {% endif %}
+{% endblock %}

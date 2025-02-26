@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">📅 My Event Dashboard</h2>
+
+    <div class="card mt-4">
+        <div class="card-header bg-success text-white">
+            <h3>🎉 Upcoming Events</h3>
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for event in upcoming_events %}
+                <li class="list-group-item">
+                    <strong>{{ event.title }}</strong> - {{ event.date }}
+                    <a href="{% url 'event_detail' event.id %}" class="btn btn-primary btn-sm float-end">View</a>
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">No upcoming events.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header bg-secondary text-white">
+            <h3>📜 Past Events</h3>
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for event in past_events %}
+                <li class="list-group-item">
+                    <strong>{{ event.title }}</strong> - {{ event.date }}
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">No past events.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+

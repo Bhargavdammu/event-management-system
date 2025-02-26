@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Create Event{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Create a New Event</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Create Event</button>
+    </form>
+    <br>
+    <a href="{% url 'event_list' %}" class="btn btn-secondary">Back to Events</a>
+</div>
+{% endblock %}
