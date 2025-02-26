@@ -20,14 +20,16 @@ django-timezone-field==7.1
 gunicorn==23.0.0
 idna==3.10
 kombu==5.4.2
-pymysql
+mysqlclient==2.2.7
 packaging==24.2
 pillow==11.1.0
 prompt_toolkit==3.0.50
 pydot==3.0.4
+PyMySQL==1.1.1
 pyparsing==3.2.1
 python-crontab==3.2.0
 python-dateutil==2.9.0.post0
+python-dotenv==1.0.1
 qrcode==8.0
 razorpay==1.4.2
 requests==2.32.3
@@ -36,6 +38,6 @@ sqlparse==0.5.3
 tzdata==2025.1
 urllib3==2.3.0
 vine==5.1.0
+waitress==3.0.2
 wcwidth==0.2.13
-python-dotenv==1.0.1
-
+whitenoise==6.9.0
