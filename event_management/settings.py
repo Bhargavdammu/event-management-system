@@ -285,3 +285,8 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 # Authentication
 AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = "/login/"
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://web-production-9a06.up.railway.app"
+]
+
