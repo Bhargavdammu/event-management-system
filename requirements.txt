@@ -20,7 +20,7 @@ django-timezone-field==7.1
 gunicorn==23.0.0
 idna==3.10
 kombu==5.4.2
-mysqlclient==2.2.7
+PyMySQL
 packaging==24.2
 pillow==11.1.0
 prompt_toolkit==3.0.50
