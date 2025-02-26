@@ -197,7 +197,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+   
+
+    'django.contrib.staticfiles',  # Ensure this is included
+    'whitenoise.runserver_nostatic',  # Add WhiteNoise here
 
     # Your apps
     'events',
@@ -209,6 +212,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this at the top
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -287,6 +291,9 @@ AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = "/login/"
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://web-production-9a06.up.railway.app"
+    "https://web-production-9a06.up.railway.app",
 ]
 
+# Ensure WhiteNoise is enabled
+
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
