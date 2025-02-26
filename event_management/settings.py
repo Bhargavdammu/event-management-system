@@ -187,7 +187,8 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-*6+^&1$5avo*bsn%+1j
 DEBUG = os.getenv('DEBUG', 'False') == 'True'  # Converts string to boolean
 
 # Allowed hosts configuration (for Render deployment)
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = ["web-production-9a06.up.railway.app", "127.0.0.1", "localhost"]
+
 
 # Application definition
 INSTALLED_APPS = [
